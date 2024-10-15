@@ -1,0 +1,242 @@
+/* Pretendard 폰트 적용 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+body {
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+  color: #333;
+  background-color: #f5f5f7;
+  display: flex;
+  height: 100vh;
+  overflow-y: scroll; /* 페이지가 스크롤 가능하도록 설정 */
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* 페이지 전체 스크롤 가능 */
+}
+
+/* 네비게이션 바 */
+.navbar {
+  position: fixed;
+  height: 100vh;
+  width: 200px;
+  background-color: #ffffff;
+  border-right: 1px solid #d1d1d6;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.navbar.shrink {
+  width: 60px;
+}
+
+/* 로고 스타일: 가운데 정렬 및 축소 시 숨김 */
+.logo {
+  width: 120px;
+  height: auto;
+  margin: 40px 0 20px 0; /* 로고 위에 마진 추가 */
+  transition: opacity 0.3s ease;
+}
+
+.navbar.shrink .logo {
+  visibility: hidden; /* 로고만 숨김, 레이아웃 유지 */
+}
+
+/* 메뉴 아이템 컨테이너 */
+.nav-items {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* 메뉴들을 왼쪽 정렬 */
+  padding-left: 20px;
+  width: 100%; /* 메뉴가 네비게이션 바 너비를 넘지 않도록 설정 */
+  margin-top: -50px;
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  text-decoration: none;
+  font-size: 16px;
+  color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px 0;
+  transition: background-color 0.3s, font-size 0.3s;
+  height: 40px; /* 고정된 높이 */
+}
+
+.navbar a:hover {
+  background-color: orange;
+  color: white;
+}
+.navbar a span{
+    margin-left: 10px;
+    transition: display 0.3s;
+}
+.navbar.shrink span {
+    display:none;
+}
+.navbar.shrink a {
+    width:24px;
+}
+.navbar .active {
+  background-color: #f44a13;
+  color: white;
+}
+
+/* 페이지 컨텐츠 */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    margin-left: 120px; /* 왼쪽 마진을 200px에서 160px으로 줄여 왼쪽으로 붙이기 */
+  }
+
+.navbar.shrink ~ .content {
+  margin-left: 60px; /* 네비게이션 바가 접혔을 때 마진 변경 */
+}
+
+/* Wi-Fi 페이지 제목 */
+.page-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Wi-Fi 목록 컴포넌트 */
+#wifi-list {
+  list-style: none;
+  margin: 0 0 0 0; /* 왼쪽으로 20px 이동 */
+  background-color: #f0edf3;
+  border: 0.5px solid #DBDBDB;
+  border-radius: 12px;
+  width: 600px;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+
+/* Wi-Fi 목록 아이템 */
+#wifi-list li {
+  font-size: 14px;
+  padding: 20px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5px solid #DBDBDB;
+  
+}
+
+#wifi-list li:last-child {
+  border-bottom: none; /* 마지막 아이템에 구분선 제거 */
+}
+
+#wifi-list li span {
+  font-size: 14px;
+  margin-left: 20px; /* 왼쪽 마진을 추가하여 텍스트를 왼쪽으로 이동 */
+
+}
+
+/* Wi-Fi 신호 세기 스타일 */
+.signal {
+  font-size: 14px;
+  color: #888;
+}
+
+
+/* 모달 스타일 */
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* 배경 어두운 색상으로 반투명 처리 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    border: 0.5px solid #DBDBDB; /* 얇은 테두리 */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* 페이지와 일관된 그림자 효과 */
+    width: 400px;
+    text-align: center;
+    font-family: 'Pretendard', sans-serif;
+  }
+  
+  .close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333; /* 페이지의 기본 텍스트 색상과 동일 */
+  }
+  
+  .modal-content h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #333;
+  }
+  
+  .modal-content input {
+    width: calc(100% - 40px);
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #d1d1d6; /* 라이트 테마와 맞는 연한 테두리 */
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f5f5f7; /* 페이지의 배경색과 유사한 톤으로 부드럽게 */
+  }
+  
+  .modal-content button {
+    background-color: #f44a13; /* 브랜드 컬러 */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .modal-content button:hover {
+    background-color: #d93d0e; /* 버튼 호버 시 조금 더 진한 색상 */
+  }
+  
+  #screensaver {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* 약간의 반투명 검정 배경 */
+    display: none; /* 기본적으로 숨김 */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* 모든 요소 위에 표시 */
+  }
+  
+  #screensaver img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 화면 전체를 채우도록 */
+  }
+  

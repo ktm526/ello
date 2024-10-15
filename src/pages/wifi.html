@@ -1,0 +1,19 @@
+<div class="content">
+    <div class="page-title">Wi-Fi</div>
+    <ul id="wifi-list">
+      <li>
+        <span>네트워크 목록을 불러오는 중입니다</span>
+      </li>
+    </ul>
+  </div>
+  <!-- Wi-Fi 비밀번호 입력 모달 -->
+<div id="wifi-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="closeWifiModal()">&times;</span>
+      <h2>Wi-Fi 연결</h2>
+      <p id="wifi-modal-ssid"></p>
+      <input type="password" id="wifi-password" placeholder="비밀번호를 입력하세요" />
+      <button onclick="submitWifiPassword()">연결</button>
+    </div>
+  </div>
+  
